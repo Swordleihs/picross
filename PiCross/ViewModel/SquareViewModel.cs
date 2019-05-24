@@ -50,16 +50,16 @@ namespace ViewModel
 
             public void Execute(object parameter)
             {
-                if (_viewModel.square.Contents.Value == Square.FILLED)
+                if (_viewModel.square.Contents.Value == Square.UNKNOWN)
                 {
-                    _viewModel.square.Contents.Value = Square.EMPTY;
+                    _viewModel.square.Contents.Value = Square.FILLED;
                 }
                 else if(_viewModel.square.Contents.Value == Square.EMPTY) {
                     _viewModel.square.Contents.Value = Square.FILLED;
                 }
                 else
                 {
-                    _viewModel.square.Contents.Value = Square.FILLED;
+                    _viewModel.square.Contents.Value = Square.UNKNOWN;
                 }
 
             }
@@ -83,7 +83,18 @@ namespace ViewModel
 
             public void Execute(object parameter)
             {
-                _viewModel.square.Contents.Value = Square.UNKNOWN;
+                if(_viewModel.square.Contents.Value == Square.UNKNOWN)
+                {
+                    _viewModel.square.Contents.Value = Square.EMPTY;
+                }else if(_viewModel.square.Contents.Value == Square.FILLED)
+                {
+                    _viewModel.square.Contents.Value = Square.EMPTY;
+                }
+                else
+                {
+                    _viewModel.square.Contents.Value = Square.UNKNOWN;
+                }
+                
             }
         }
     }   

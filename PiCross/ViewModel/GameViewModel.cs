@@ -24,47 +24,43 @@ namespace ViewModel
             this.Grid = this.playablePuzzle.Grid.Map(square => new SquareViewModel(square)).Copy();
             this.RowConstraints = this.playablePuzzle.RowConstraints.Map(row => new RowViewModel(row)).Copy();
             this.ColumnConstraints = this.playablePuzzle.ColumnConstraints.Map(column => new ColumnViewModel(column)).Copy();
-            this.IsSatisfied = this.playablePuzzle.IsSolved;
+            IsSolved = playablePuzzle.IsSolved;
         }
 
         public object Grid { get; }
-
         public object RowConstraints { get; }
         public object ColumnConstraints { get; }
-
-        public Cell<bool> IsSatisfied { get; }
-
-
+        public Cell<bool> IsSolved { get; }
         public event PropertyChangedEventHandler PropertyChanged;
     }
 
-    public class RowViewModel
+    internal class RowViewModel
     {
         private IPlayablePuzzleConstraints row;
 
         public RowViewModel(IPlayablePuzzleConstraints row)
         {
             this.row = row;
-            this.IsSatisfied = row.IsSatisfied;
+            this.Satisfied = row.IsSatisfied;
         }
 
         public object Values => row.Values;
 
-        Cell<bool> IsSatisfied { get; }
+        Cell<bool> Satisfied { get; }
     }
 
-    public class ColumnViewModel
+    internal class ColumnViewModel
     {
         private IPlayablePuzzleConstraints column;
 
         public ColumnViewModel(IPlayablePuzzleConstraints column)
         {
             this.column = column;
-            this.IsSatisfied = column.IsSatisfied;
+            this.Satisfied = column.IsSatisfied;
         }
 
         public object Values => column.Values;
 
-        Cell<bool> IsSatisfied { get; }
+        Cell<bool> Satisfied { get; }
     }
 }

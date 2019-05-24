@@ -10,19 +10,14 @@ namespace View
 {
     public class IsSatisfiedConverter : IValueConverter
     {
-        public string Satisfied { get; set; }
-        public string NotSatisfied { get; set; }
+        public Object Satisfied { get; set; }
+        public Object NotSatisfied { get; set; }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             bool IsSatisfied = (bool)value;
-            if (IsSatisfied)
-            {
-                return Satisfied;
-            }else
-            {
-                return NotSatisfied;
-            }
+
+            return IsSatisfied ? Satisfied : NotSatisfied;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
