@@ -125,5 +125,10 @@
       <Name>ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="minecraft.mp3" />
+    <Content Include="crab.mp3" />
+    <Content Include="pokemon.mp3" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -45,7 +45,6 @@
     <Compile Include="HomeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelectViewModel.cs" />
-    <Compile Include="SquareViewModel.cs" />
     <Compile Include="GameViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -8,6 +8,14 @@ namespace ViewModel
     {
         private readonly IGameData gameData;
 
+        public SelectViewModel()
+        {
+            var facade = new PiCrossFacade();
+            gameData = facade.CreateDummyGameData();
+            Puzzles = gameData.PuzzleLibrary.Entries;
+            ChosenPuzzle = Puzzles.ElementAt(0);
+        }
+
         public IPuzzleLibraryEntry ChosenPuzzle
         {
             get;
@@ -16,14 +24,6 @@ namespace ViewModel
         public IEnumerable<IPuzzleLibraryEntry> Puzzles
         {
             get;
-        }
-
-        public SelectViewModel()
-        {
-            var facade = new PiCrossFacade();
-            gameData = facade.CreateDummyGameData();
-            Puzzles = gameData.PuzzleLibrary.Entries;
-            ChosenPuzzle = Puzzles.ElementAt(0);
         }
     }
 }

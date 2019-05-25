@@ -12,7 +12,7 @@ namespace View
             base.OnStartup(e);
 
             var window = new MainWindow();
-            window.DataContext = new ScreenController();
+            window.DataContext = new ScreenController(window);
             window.Show();
         }
     }

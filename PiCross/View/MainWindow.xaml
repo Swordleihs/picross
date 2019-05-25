@@ -6,9 +6,10 @@
         xmlns:controls="clr-namespace:View.Controls"
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
-        Title="Picross" Height="350" Width="525"
+        Title="Picross" Height="Auto" Width="Auto"
         WindowState="Maximized"
         FontFamily="Arial">
+
     <Window.Background>
         <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.7" RadiusY="0.7">
             <RadialGradientBrush.GradientStops>
@@ -24,38 +25,74 @@
 
     <ContentPresenter Content="{Binding CurrentScreen}">
         <ContentPresenter.Resources>
-
             <DataTemplate DataType="{x:Type local:HomeScreen}">
-                <StackPanel VerticalAlignment="Center">
-                    <TextBlock FontFamily="Arial" TextAlignment="Center"  FontSize="3cm" FontWeight="Bold">Picross</TextBlock>
-                    <Button Content="Start Game" Background="DimGray" Foreground="White" Padding="0.2cm" FontSize="0.8cm" Width="6cm" Command="{Binding Start}">
-                        <Button.Triggers>
-                            <EventTrigger RoutedEvent="Button.MouseLeave">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <ColorAnimation From="PowderBlue" To="DimGray" 
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <TextBlock  FontFamily="Arial" TextAlignment="Center"  FontSize="3cm" FontWeight="Bold">Picross</TextBlock>
+                        <Button Content="Start Game" Background="DimGray" Foreground="White" Padding="0.2cm" FontSize="0.8cm" Width="6cm" Command="{Binding Start}">
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.MouseLeave">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation From="PowderBlue" To="DimGray" 
                                     Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
                                     FillBehavior="Stop" 
                                     Duration="0:0:0.5"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                        </Button.Triggers>
-                    </Button>
-                    <Button Content="Exit" Background="DimGray" Foreground="White" Padding="0.2cm" FontSize="0.8cm" Width="6cm" Command="{Binding Close}">
-                        <Button.Triggers>
-                            <EventTrigger RoutedEvent="Button.MouseLeave">
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <ColorAnimation From="PowderBlue" To="DimGray" 
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Button.Triggers>
+                        </Button>
+                        <Button Content="Exit" Background="DimGray" Foreground="White" Padding="0.2cm" FontSize="0.8cm" Width="6cm" Command="{Binding Close}">
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.MouseLeave">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation From="PowderBlue" To="DimGray" 
                                     Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
                                     FillBehavior="Stop" 
                                     Duration="0:0:0.5"/>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
-                        </Button.Triggers>
-                    </Button>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Button.Triggers>
+                        </Button>
+                    <Grid HorizontalAlignment="Center" Height="1cm" Opacity="0.7">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <Button HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0" Content="Play/Pause" Background="DimGray" Foreground="White" Width="3cm" FontSize="0.4cm" Command="{Binding Music}">
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.MouseLeave">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation From="PowderBlue" To="DimGray" 
+                                    Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
+                                    FillBehavior="Stop" 
+                                    Duration="0:0:0.5"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Button.Triggers>
+                        </Button>
+                        <Button HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" Content="Shuffle" Background="DimGray" Foreground="White" Width="3cm" FontSize="0.4cm" Command="{Binding NextSong}">
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.MouseLeave">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation From="PowderBlue" To="DimGray" 
+                                    Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
+                                    FillBehavior="Stop" 
+                                    Duration="0:0:0.5"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Button.Triggers>
+                        </Button>
+                    </Grid>
                 </StackPanel>
             </DataTemplate>
 
@@ -139,6 +176,7 @@
 
                                 <controls:PiCrossControl.RowConstraintsTemplate>
                                     <DataTemplate>
+                                        
                                         <ItemsControl ItemsSource="{Binding Values}">
                                             <ItemsControl.ItemsPanel>
                                                 <ItemsPanelTemplate>
@@ -147,7 +185,7 @@
                                             </ItemsControl.ItemsPanel>
                                             <ItemsControl.ItemTemplate>
                                                 <DataTemplate>
-                                                    <TextBlock FontSize="0.7cm" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="DemiBold" Width="50" Height="50" Text="{Binding Value}">
+                                                    <TextBlock Padding="0.3cm" FontSize="0.7cm" FontWeight="DemiBold" Width="50" Height="50" Text="{Binding Value}" TextAlignment="Center">
                                                         <TextBlock.Foreground>
                                                             <Binding Path="IsSatisfied.Value">
                                                                 <Binding.Converter>
@@ -155,45 +193,36 @@
                                                                 </Binding.Converter>
                                                             </Binding>
                                                         </TextBlock.Foreground>
+
                                                     </TextBlock>
                                                 </DataTemplate>
                                             </ItemsControl.ItemTemplate>
+
                                             <ItemsControl.Background>
-                                                <Binding Path="IsSatisfied.Value">
+                                                <Binding Path="Satisfied.Value">
                                                     <Binding.Converter>
                                                         <local:IsSatisfiedConverter>
                                                             <local:IsSatisfiedConverter.Satisfied>
-                                                                <SolidColorBrush Color="black"/>
-
-
-                                                                <!--
-                                                            <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
-                                                                <GradientStop Offset="0" Color="red"/>
-                                                                <GradientStop Offset="0.08" Color="Black"/>
-                                                                <GradientStop Offset="0.8" Color="Black"/>
-                                                                <GradientStop Offset="1" Color="red"/>
-                                                            </LinearGradientBrush>-->
+                                                                <SolidColorBrush Opacity="0.4" Color="LightGreen"/>
                                                             </local:IsSatisfiedConverter.Satisfied>
                                                         </local:IsSatisfiedConverter>
                                                     </Binding.Converter>
                                                 </Binding>
                                             </ItemsControl.Background>
-                                        </ItemsControl>
+                                            <ItemsControl.InputBindings>
+                                                <MouseBinding Gesture="LeftClick" Command="{Binding SquareLeftClick}"/>
+                                                <MouseBinding Gesture="RightClick" Command="{Binding SquareRightClick}"/>
+                                            </ItemsControl.InputBindings>
+                                                
+                                            </ItemsControl>
+                                            
                                     </DataTemplate>
                                 </controls:PiCrossControl.RowConstraintsTemplate>
 
                                 <controls:PiCrossControl.ColumnConstraintsTemplate>
                                     <DataTemplate>
                                         <ItemsControl ItemsSource="{Binding Values}">
-                                            <ItemsControl.Background>
-                                                <Binding Path="IsSatisfied.Satisfied.Value">
-                                                    <Binding.Converter>
-                                                        <local:IsSatisfiedConverter Satisfied="Green" NotSatisfied="Red"/>
-                                                    </Binding.Converter>
-                                                </Binding>
-                                            </ItemsControl.Background>
-
-
+                                            
                                             <ItemsControl.ItemsPanel>
                                                 <ItemsPanelTemplate>
                                                     <StackPanel Orientation="Vertical" />
@@ -201,7 +230,7 @@
                                             </ItemsControl.ItemsPanel>
                                             <ItemsControl.ItemTemplate>
                                                 <DataTemplate>
-                                                    <TextBlock FontSize="0.7cm" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="DemiBold" Width="50" Height="50" Text="{Binding Value}">
+                                                    <TextBlock Padding="0.3cm" FontSize="0.7cm" FontWeight="DemiBold" Width="50" Height="50" Text="{Binding Value}" TextAlignment="Center">
                                                         <TextBlock.Foreground>
                                                             <Binding Path="IsSatisfied.Value">
                                                                 <Binding.Converter>
@@ -212,6 +241,18 @@
                                                     </TextBlock>
                                                 </DataTemplate>
                                             </ItemsControl.ItemTemplate>
+
+                                            <ItemsControl.Background>
+                                                <Binding Path="Satisfied.Value">
+                                                    <Binding.Converter>
+                                                        <local:IsSatisfiedConverter>
+                                                            <local:IsSatisfiedConverter.Satisfied>
+                                                                <SolidColorBrush  Opacity="0.4" Color="LightGreen"/>
+                                                            </local:IsSatisfiedConverter.Satisfied>
+                                                        </local:IsSatisfiedConverter>
+                                                    </Binding.Converter>
+                                                </Binding>
+                                            </ItemsControl.Background>
                                         </ItemsControl>
                                     </DataTemplate>
                                 </controls:PiCrossControl.ColumnConstraintsTemplate>

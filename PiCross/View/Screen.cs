@@ -38,11 +38,21 @@ namespace View
         {
             get;
         }
+        public ICommand Music
+        {
+            get;
+        }
+        public ICommand NextSong
+        {
+            get;
+        }
         public HomeScreen(ScreenController sC) : base(sC)
         {
             ViewModel = new HomeViewModel();
             Close = new ExecuteCommand(() => System.Windows.Application.Current.Shutdown());
             Start = new ExecuteCommand(() => SwitchScreen(new SelectScreen(sC)));
+            Music = new ExecuteCommand(() => sC.MainScreen.Music());
+            NextSong = new ExecuteCommand(() => sC.MainScreen.NextSong());
         }
     }
 
