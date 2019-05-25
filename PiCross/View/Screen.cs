@@ -1,6 +1,8 @@
 ﻿using PiCross;
 using System;
+using System.ComponentModel;
 using System.Windows.Input;
+using System.Windows.Threading;
 using ViewModel;
 
 namespace View
@@ -80,6 +82,7 @@ namespace View
 
     public class GameScreen : Screen
     {
+        
         public ICommand Back
         {
         get;

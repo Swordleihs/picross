@@ -140,10 +140,9 @@
 
             <DataTemplate DataType="{x:Type local:GameScreen}">
                 <StackPanel  VerticalAlignment="Center" HorizontalAlignment="Center">
-                    
                     <StackPanel DataContext="{Binding ViewModel}">
 
-                        <TextBlock TextAlignment="Center" FontSize="2cm" FontWeight="Bold" Text="Solved.">
+                        <TextBlock Name="SolvedText" TextAlignment="Center" Height="60" FontSize="2cm" FontWeight="Bold" Text="Solved.">
                             <TextBlock.Visibility>
                                 <Binding Path="IsSolved.Value">
                                     <Binding.Converter>
@@ -151,9 +150,32 @@
                                     </Binding.Converter>
                                 </Binding>
                             </TextBlock.Visibility>
+                            <TextBlock.Triggers>
+                                <EventTrigger RoutedEvent="TextBlock.Loaded">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="SolvedText" Storyboard.TargetProperty="FontSize" From="50" To="60" Duration="0:0:1" AutoReverse="True" RepeatBehavior="Forever"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </TextBlock.Triggers>
                         </TextBlock>
 
-                        <Grid HorizontalAlignment="Center">
+                        
+                        
+                        
+                        
+                        <Grid Name="PicrossGrid"  HorizontalAlignment="Center">
+                            <Grid.Triggers>
+                                <EventTrigger RoutedEvent="Grid.Loaded">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetName="PicrossGrid" Storyboard.TargetProperty="Opacity" From="0.0" To="1.0" Duration="0:0:0.7"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Grid.Triggers>
+                            
                             <controls:PiCrossControl x:Name="picrossControl" Grid="{Binding Grid}" RowConstraints="{Binding RowConstraints}" ColumnConstraints="{Binding ColumnConstraints}">
 
                                 <controls:PiCrossControl.SquareTemplate>
@@ -193,7 +215,6 @@
                                                                 </Binding.Converter>
                                                             </Binding>
                                                         </TextBlock.Foreground>
-
                                                     </TextBlock>
                                                 </DataTemplate>
                                             </ItemsControl.ItemTemplate>
@@ -276,10 +297,10 @@
                             </EventTrigger>
                         </Button.Triggers>
                     </Button>
-                
+
                 </StackPanel>
+                
             </DataTemplate>
-            
         </ContentPresenter.Resources>
     </ContentPresenter>
 

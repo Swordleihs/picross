@@ -9,16 +9,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows;
+
 
 namespace ViewModel
 {
     public class GameViewModel : INotifyPropertyChanged
     {
         private readonly IPlayablePuzzle playablePuzzle;
-        public ICommand RowLeftClick { get; }
 
         public GameViewModel(Puzzle puzzle)
         {
+
             var facade = new PiCrossFacade();
             this.playablePuzzle = facade.CreatePlayablePuzzle(puzzle);
 
