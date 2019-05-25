@@ -19,6 +19,18 @@
         </RadialGradientBrush>
     </Window.Background>
 
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="TextBlock.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="(Window.Background).(RadialGradientBrush.RadiusX)" From="0.7" To="1.1" Duration="0:0:3" AutoReverse="True" RepeatBehavior="Forever"/>
+                    <DoubleAnimation Storyboard.TargetProperty="(Window.Background).(RadialGradientBrush.RadiusY)" From="0.7" To="1.1" Duration="0:0:3" AutoReverse="True" RepeatBehavior="Forever"/>
+
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+
     <Window.Resources>
         <local:SquareConverter x:Key="squareConverter" />
     </Window.Resources>
@@ -28,7 +40,7 @@
             <DataTemplate DataType="{x:Type local:HomeScreen}">
                     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
                         <TextBlock  FontFamily="Arial" TextAlignment="Center"  FontSize="3cm" FontWeight="Bold">Picross</TextBlock>
-                        <Button Content="Start Game" Background="DimGray" Foreground="White" Padding="0.2cm" FontSize="0.8cm" Width="6cm" Command="{Binding Start}">
+                        <Button  Content="Start Game" Background="DimGray" Foreground="White" Padding="0.2cm" Height="1.5cm" FontSize="0.8cm" Width="6cm" Command="{Binding Start}">
                             <Button.Triggers>
                                 <EventTrigger RoutedEvent="Button.MouseLeave">
                                     <BeginStoryboard>
@@ -36,13 +48,21 @@
                                             <ColorAnimation From="PowderBlue" To="DimGray" 
                                     Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
                                     FillBehavior="Stop" 
-                                    Duration="0:0:0.5"/>
-                                        </Storyboard>
+                                    Duration="0:0:0.4"/>
+                                        <DoubleAnimation  Storyboard.TargetProperty="FontSize" From="34" To="30" Duration="0:0:0.2"/>
+                                    </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger>
+                            <EventTrigger RoutedEvent="Button.MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="FontSize" From="30" To="34" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
                             </Button.Triggers>
                         </Button>
-                        <Button Content="Exit" Background="DimGray" Foreground="White" Padding="0.2cm" FontSize="0.8cm" Width="6cm" Command="{Binding Close}">
+                    <Button Content="Exit" Background="DimGray" Foreground="White" Padding="0.2cm" Height="1.5cm" FontSize="0.8cm" Width="6cm" Command="{Binding Close}">
                             <Button.Triggers>
                                 <EventTrigger RoutedEvent="Button.MouseLeave">
                                     <BeginStoryboard>
@@ -50,11 +70,19 @@
                                             <ColorAnimation From="PowderBlue" To="DimGray" 
                                     Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
                                     FillBehavior="Stop" 
-                                    Duration="0:0:0.5"/>
-                                        </Storyboard>
+                                    Duration="0:0:0.4"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="FontSize" From="34" To="30" Duration="0:0:0.2"/>
+                                    </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger>
-                            </Button.Triggers>
+                            <EventTrigger RoutedEvent="Button.MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="FontSize" From="30" To="34" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Button.Triggers>
                         </Button>
                     <Grid HorizontalAlignment="Center" Height="1cm" Opacity="0.7">
                         <Grid.ColumnDefinitions>
@@ -72,7 +100,7 @@
                                             <ColorAnimation From="PowderBlue" To="DimGray" 
                                     Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
                                     FillBehavior="Stop" 
-                                    Duration="0:0:0.5"/>
+                                    Duration="0:0:0.4"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger>
@@ -86,7 +114,7 @@
                                             <ColorAnimation From="PowderBlue" To="DimGray" 
                                     Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
                                     FillBehavior="Stop" 
-                                    Duration="0:0:0.5"/>
+                                    Duration="0:0:0.4"/>
                                         </Storyboard>
                                     </BeginStoryboard>
                                 </EventTrigger>
@@ -107,7 +135,7 @@
                             </ListBox.ItemTemplate>
                         </ListBox>
                     </StackPanel>
-                    <Button Content="Select Puzzle" Background="DimGray" Foreground="White" Padding="0.2cm" FontSize="0.8cm" Width="6cm" Command="{Binding Go}">
+                    <Button Content="Select Puzzle" Background="DimGray" Foreground="White"  Height="1.5cm" Padding="0.2cm" FontSize="0.8cm" Width="6cm" Command="{Binding Go}">
                         <Button.Triggers>
                             <EventTrigger RoutedEvent="Button.MouseLeave">
                                 <BeginStoryboard>
@@ -115,13 +143,21 @@
                                         <ColorAnimation From="PowderBlue" To="DimGray" 
                                     Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
                                     FillBehavior="Stop" 
-                                    Duration="0:0:0.5"/>
+                                    Duration="0:0:0.4"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="FontSize" From="34" To="30" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="Button.MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="FontSize" From="30" To="34" Duration="0:0:0.2"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
                         </Button.Triggers>
                     </Button>
-                    <Button Content="Back" Background="DimGray" Foreground="White" Padding="0.2cm" FontSize="0.8cm" Width="6cm" Command="{Binding BackHome}">
+                    <Button Content="Back" Background="DimGray" Foreground="White" Height="1.5cm"  Padding="0.2cm" FontSize="0.8cm" Width="6cm" Command="{Binding BackHome}">
                         <Button.Triggers>
                             <EventTrigger RoutedEvent="Button.MouseLeave">
                                 <BeginStoryboard>
@@ -129,7 +165,15 @@
                                         <ColorAnimation From="PowderBlue" To="DimGray" 
                                     Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
                                     FillBehavior="Stop" 
-                                    Duration="0:0:0.5"/>
+                                    Duration="0:0:0.4"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="FontSize" From="34" To="30" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="Button.MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="FontSize" From="30" To="34" Duration="0:0:0.2"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
@@ -161,10 +205,6 @@
                             </TextBlock.Triggers>
                         </TextBlock>
 
-                        
-                        
-                        
-                        
                         <Grid Name="PicrossGrid"  HorizontalAlignment="Center">
                             <Grid.Triggers>
                                 <EventTrigger RoutedEvent="Grid.Loaded">
@@ -282,8 +322,8 @@
                         </Grid>
 
                     </StackPanel>
-                    
-                    <Button Margin="0.2cm" Content="New Puzzle" Background="DimGray" Foreground="White" Padding="0.2cm" FontSize="0.8cm" Width="6cm" Command="{Binding Back}">
+
+                    <Button Margin="0.2cm" Content="New Puzzle" Background="DimGray" Height="1.5cm" Foreground="White" Padding="0.2cm" FontSize="0.8cm" Width="6cm" Command="{Binding Back}">
                         <Button.Triggers>
                             <EventTrigger RoutedEvent="Button.MouseLeave">
                                 <BeginStoryboard>
@@ -291,7 +331,15 @@
                                         <ColorAnimation From="PowderBlue" To="DimGray" 
                                     Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
                                     FillBehavior="Stop" 
-                                    Duration="0:0:0.5"/>
+                                    Duration="0:0:0.4"/>
+                                        <DoubleAnimation Storyboard.TargetProperty="FontSize" From="34" To="30" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="Button.MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="FontSize" From="30" To="34" Duration="0:0:0.2"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
